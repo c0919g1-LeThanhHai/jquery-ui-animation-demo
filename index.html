@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        #draggable,
+        #draggable2,
+        #droppable,
+        #resizable {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        .state-highlight {
+            background-color: yellow;
+        }
+
+        #selectable,
+        #sortable {
+            width: 150px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #selectable li,
+        #sortable li {
+            margin: 3px;
+            padding: 0.4em;
+            font-size: 1.4em;
+            height: 18px;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        #selectable .ui-selecting {
+            background-color: yellow
+        }
+
+        #selectable .ui-selected {
+            background-color: orange;
+            color: white;
+        }
+
+        #accordion {
+            width: 500px;
+        }
+
+        #slider {
+            width: 500px;
+        }
+
+        #progressbar {
+            width: 500px;
+        }
+
+        #tabs {
+            width: 500px;
+        }
+
+        .toggler {
+            width: 500px;
+            height: 200px;
+            position: relative;
+        }
+
+        #button {
+            padding: .5em 1em;
+            text-decoration: none;
+        }
+
+        #effect {
+            width: 240px;
+            padding: 1em;
+            border: 1px solid #000;
+            background: #eee;
+            color: #333;
+        }
+
+        .newClass {
+            text-indent: 40px;
+            letter-spacing: .4em;
+            width: 410px;
+            height: 120px;
+            padding: 30px;
+            margin: 10px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Draggable</h1>
+    <div id="draggable">
+        <p>Drag me around</p>
+    </div>
+    <h1>Droppable</h1>
+    <div id="droppable">
+        <p>Drop here</p>
+    </div>
+    <div id="draggable2">
+        <p>Drag me to my target</p>
+    </div>
+
+    <h1>Resizable</h1>
+    <div id="resizable">
+        <p>Resizable</p>
+    </div>
+
+    <h1>Selectable</h1>
+    <ul id="selectable">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+    </ul>
+
+    <h1>Sortable</h1>
+    <ul id="sortable">
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+    </ul>
+
+    <h1>Accordion</h1>
+    <div id="accordion">
+        <h3>Section 1</h3>
+        <div>
+            <p>
+                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+                ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+                amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+                odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+            </p>
+        </div>
+        <h3>Section 2</h3>
+        <div>
+            <p>
+                Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+                purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+                velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+                suscipit faucibus urna.
+            </p>
+        </div>
+        <h3>Section 3</h3>
+        <div>
+            <p>
+                Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+                Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+                ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+                lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+            </p>
+            <ul>
+                <li>List item one</li>
+                <li>List item two</li>
+                <li>List item three</li>
+            </ul>
+        </div>
+        <h3>Section 4</h3>
+        <div>
+            <p>
+                Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+                et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+                faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+                mauris vel est.
+            </p>
+            <p>
+                Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                inceptos himenaeos.
+            </p>
+        </div>
+    </div>
+
+    <h1>Autocomplete</h1>
+    <div id="ui-widget">
+        <label for="tags">Tags: </label>
+        <input type="text" id="tags">
+    </div>
+
+    <h1>Datepicker</h1>
+    <div>
+        <p>Date: <input type="text" id="datepicker"></p>
+    </div>
+
+    <h1>Dialog</h1>
+    <div id="dialog" title="Basic dialog">
+        <p>This is the default dialog which is useful for displaying information. The dialog window can be moved,
+            resized and closed with the 'x' icon.</p>
+    </div>
+
+    <h1>Slider</h1>
+    <div id="slider"></div>
+
+    <h1>Progressbar</h1>
+    <div id="progressbar"></div>
+
+    <h1>Tabs</h1>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Nunc tincidunt</a></li>
+            <li><a href="#tabs-2">Proin dolor</a></li>
+            <li><a href="#tabs-3">Aenean lacinia</a></li>
+        </ul>
+        <div id="tabs-1">
+            <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec
+                sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem.
+                Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend
+                adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut
+                et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc
+                tristique tempus lectus.</p>
+        </div>
+        <div id="tabs-2">
+            <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id
+                nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie
+                lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula
+                suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur
+                ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque
+                convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare
+                leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+        </div>
+        <div id="tabs-3">
+            <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula
+                accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent
+                taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu
+                urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem
+                enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+            <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla
+                facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti.
+                Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio.
+                Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat
+                porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas
+                commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+        </div>
+    </div>
+
+    <h1>Add class, Remove class</h1>
+    <div class="toggler">
+        <div id="effect" class="ui-corner-all">
+            Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede.
+        </div>
+    </div>
+
+    <button id="button" class="ui-state-default ui-corner-all">Run Effect</button>
+
+    <script>
+        $(function () {
+            $("#draggable").draggable();
+            $("#draggable2").draggable();
+            $("#droppable").droppable({
+                drop: function (even, ui) {
+                    $(this).addClass("state-highlight").find("p").html("Dropped!!!");
+                }
+            });
+            $("#resizable").resizable();
+            $("#selectable").selectable();
+            $("#sortable").sortable();
+            $("#sortable").disableSelection();
+            $("#accordion").accordion();
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+            $("#datepicker").datepicker();
+            $("#dialog").dialog();
+            $("#slider").slider();
+            $("#progressbar").progressbar({
+                value: 90
+            });
+            $("#tabs").tabs();
+            $("#button").on("click", function () {
+                $("#effect").addClass("newClass", 1000, callback);
+            });
+            function callback() {
+                setTimeout(function () {
+                    $("#effect").removeClass("newClass");
+                }, 1500);
+            }
+        })
+    </script>
+</body>
+
+</html>
